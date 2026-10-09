@@ -1,278 +1,198 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>З Днем Народження!</title>
-  <style>
-    :root {
-      --primary-color: #ff477e;
-      --secondary-color: #ff1053;
-      --accent-color: #ffb5a7;
-      --gold: #ffd700;
-      --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      --card-bg: rgba(255, 255, 255, 0.92);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Іди Сюди — Інтернет & ТБ</title>
+    <style>
+        :root {
+            --primary: #0077ff;
+            --accent: #ffb700;
+            --bg-light: #f0f4f8;
+            --text-color: #2b3a4a;
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-      background: var(--bg-gradient);
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      overflow-x: hidden;
-      position: relative;
-    }
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-color);
+        }
 
-    /* Анімація падаючого конфетті */
-    .confetti-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
-    }
+        header {
+            background: #ffffff;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
 
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background-color: var(--gold);
-      opacity: 0.8;
-      top: -10px;
-      animation: fall 5s linear infinite;
-    }
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
 
-    @keyframes fall {
-      0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(100vh) rotate(720deg);
-        opacity: 0;
-      }
-    }
+        .banner {
+            background: linear-gradient(135deg, #0077ff, #0044aa);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
 
-    /* Картка привітання */
-    .card {
-      position: relative;
-      z-index: 10;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      max-width: 500px;
-      width: 100%;
-      border-radius: 24px;
-      padding: 40px 30px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
-                  0 0 20px rgba(255, 215, 0, 0.3);
-      border: 2px solid rgba(255, 215, 0, 0.5);
-      transform: translateY(20px);
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards 0.3s;
-    }
+        .banner h1 {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
 
-    @keyframes fadeInUp {
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
+        .badge {
+            background-color: var(--accent);
+            color: #000;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
 
-    .badge {
-      display: inline-block;
-      background: linear-gradient(45deg, var(--gold), #ffaa00);
-      color: #000;
-      font-weight: bold;
-      padding: 6px 16px;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
-    }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
 
-    h1 {
-      font-size: 2.2rem;
-      color: #1a1a1a;
-      margin-bottom: 25px;
-      line-height: 1.2;
-      background: linear-gradient(45deg, var(--secondary-color), #8a2be2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+        .section-title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: var(--text-color);
+        }
 
-    /* Обгортка фото з ефектами */
-    .photo-wrapper {
-      position: relative;
-      width: 200px;
-      height: 200px;
-      margin: 0 auto 25px;
-      border-radius: 50%;
-      padding: 6px;
-      background: linear-gradient(45deg, var(--gold), var(--primary-color), #00d2ff);
-      box-shadow: 0 10px 25px rgba(255, 71, 126, 0.4);
-    }
+        .photo-surprise-block {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin-bottom: 40px;
+        }
 
-    .photo-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-      border: 4px solid #fff;
-      display: block;
-    }
+        .photo-surprise-block img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin-top: 15px;
+            border: 2px solid #e2e8f0;
+        }
 
-    /* Текст привітання */
-    .wishes {
-      font-size: 1.05rem;
-      color: #4a4a4a;
-      line-height: 1.7;
-      margin-bottom: 30px;
-    }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
 
-    .wishes p {
-      margin-bottom: 12px;
-    }
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            text-align: center;
+            transition: transform 0.2s;
+        }
 
-    .highlight {
-      color: var(--secondary-color);
-      font-weight: 600;
-    }
+        .card:hover {
+            transform: translateY(-5px);
+        }
 
-    /* Кнопка */
-    .btn {
-      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-      color: #fff;
-      border: none;
-      padding: 14px 32px;
-      font-size: 1rem;
-      font-weight: bold;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(255, 16, 83, 0.4);
-      transition: all 0.3s ease;
-      outline: none;
-    }
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
 
-    .btn:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 12px 25px rgba(255, 16, 83, 0.6);
-    }
+        .price-tag {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #1a202c;
+        }
 
-    .btn:active {
-      transform: translateY(1px);
-    }
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+        }
 
-    /* Додатковий блок з секретним привітанням */
-    .secret-message {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.6s ease, opacity 0.6s ease;
-      opacity: 0;
-      margin-top: 20px;
-      font-style: italic;
-      color: #666;
-      background: #f8f9fa;
-      border-radius: 12px;
-      padding: 0 15px;
-    }
-
-    .secret-message.show {
-      max-height: 150px;
-      opacity: 1;
-      padding: 15px;
-    }
-
-    /* Адаптивність */
-    @media (max-width: 480px) {
-      .card {
-        padding: 30px 20px;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      .photo-wrapper {
-        width: 160px;
-        height: 160px;
-      }
-    }
-  </style>
+        .btn:hover {
+            background: #0056b3;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Контейнер для анімації конфетті -->
-  <div class="confetti-container" id="confetti"></div>
+    <header>
+        <div class="logo">ІДИ СЮДИ</div>
+    </header>
 
-  <!-- Головна картка -->
-  <main class="card">
-    <span class="badge">🎉 Особливий день 🎉</span>
-    
-    <h1>З Днем Народження!</h1>
+    <section class="banner">
+        <div class="badge">СПЕЦІАЛЬНА ПРОПОЗИЦІЯ</div>
+        <h1>Швидкісний інтернет та цифрове ТБ</h1>
+        <p>Стабільне з'єднання за будь-яких умов</p>
+    </section>
 
-    <!-- Фотографія -->
-    <div class="photo-wrapper">
-      <img src="1.jpeg" alt="Іменинник" onerror="this.src='https://via.placeholder.com/200?text=Покладіть+1.jpeg';">
-    </div>
-
-    <!-- Текст -->
-    <div class="wishes">
-      <p>Бажаю незабутніх вражень, щирих посмішок та здійснення найамбітніших мрій!</p>
-      <p>Нехай кожен день дарує <span class="highlight">натхнення</span>, поруч завжди будуть вірні друзі, а в душі панує гармонія та тепло.</p>
-    </div>
-
-    <!-- Інтерактивна кнопка -->
-    <button class="btn" onclick="toggleMessage()">Натисни для сюрпризу ✨</button>
-
-    <!-- Приховане повідомлення -->
-    <div class="secret-message" id="secret">
-      <p>🎈 Нехай цей рік стане роком нових перемог, гарного настрою та міцного здоров'я! Будь щасливим(ою)! 🥂</p>
-    </div>
-  </main>
-
-  <script>
-    // Створення конфетті
-    function createConfetti() {
-      const container = document.getElementById('confetti');
-      const colors = ['#ffd700', '#ff477e', '#00d2ff', '#ff1053', '#00ff88', '#ffffff'];
-      const count = 40;
-
-      for (let i = 0; i < count; i++) {
-        const piece = document.createElement('div');
-        piece.classList.add('confetti');
+    <main class="container">
         
-        piece.style.left = Math.random() * 100 + 'vw';
-        piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.animationDuration = (Math.random() * 3 + 2) + 's';
-        piece.style.animationDelay = (Math.random() * 3) + 's';
-        piece.style.width = (Math.random() * 8 + 6) + 'px';
-        piece.style.height = piece.style.width;
+        <!-- Блок із фото 1.jpeg -->
+        <div class="photo-surprise-block">
+            <h2 class="section-title">Особлива пропозиція</h2>
+            <img src="1.jpeg" alt="Персональне зображення">
+        </div>
 
-        container.appendChild(piece);
-      }
-    }
+        <h2 class="section-title">Переваги мережі</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Висока швидкість</h3>
+                <p>Доступ до мережі на швидкості до 1 Гбіт/с для всіх пристроїв у домі.</p>
+            </div>
+            <div class="card">
+                <h3>Надійність</h3>
+                <p>Оптоволоконні технології для безперебійної роботи без затримок.</p>
+            </div>
+        </div>
 
-    // Перемикач секретного повідомлення
-    function toggleMessage() {
-      const secret = document.getElementById('secret');
-      secret.classList.toggle('show');
-    }
+        <h2 class="section-title">Тарифні плани</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <h3>Стандарт</h3>
+                <div class="price-tag">360 грн/міс</div>
+                <p>Швидкість до 100 Мбіт/с + ТБ</p>
+                <button class="btn">Обрати</button>
+            </div>
+            <div class="card">
+                <h3>Максимум</h3>
+                <div class="price-tag">490 грн/міс</div>
+                <p>Швидкість до 1 Гбіт/с + Преміум ТБ</p>
+                <button class="btn">Обрати</button>
+            </div>
+        </div>
 
-    // Запуск анімацій
-    window.onload = createConfetti;
-  </script>
+    </main>
+
 </body>
 </html>
