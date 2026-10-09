@@ -6,9 +6,11 @@
     <title>З Днем Народження, Іван Романович!</title>
     <style>
         :root {
-            --primary: #0077ff;
-            --accent: #ffb700;
-            --bg-light: #f0f4f8;
+            --primary: #ff3b30;
+            --accent: #ffcc00;
+            --secondary: #ff9500;
+            --bg-gradient: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
             --text-color: #2b3a4a;
         }
 
@@ -16,62 +18,104 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-light);
+            background: var(--bg-gradient);
             color: var(--text-color);
-            padding-bottom: 50px;
+            padding-bottom: 60px;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Анімований фон з подарунками та конфеті */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .falling-item {
+            position: absolute;
+            top: -50px;
+            font-size: 24px;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* Основний вміст */
+        header, .banner, .container {
+            position: relative;
+            z-index: 2;
         }
 
         header {
-            background: #ffffff;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
             padding: 15px 8%;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .logo {
-            font-size: 26px;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: -0.5px;
+            font-size: 28px;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+            letter-spacing: 1px;
         }
 
         .banner {
-            background: linear-gradient(135deg, #0077ff, #0044aa);
+            background: linear-gradient(135deg, #ff3b30, #ff9500);
             color: white;
-            padding: 60px 20px;
+            padding: 50px 20px;
             text-align: center;
-            border-bottom-left-radius: 24px;
-            border-bottom-right-radius: 24px;
-            box-shadow: 0 4px 20px rgba(0, 119, 255, 0.2);
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 10px 30px rgba(255, 59, 48, 0.4);
+            margin-bottom: 40px;
         }
 
         .banner h1 {
-            font-size: 36px;
+            font-size: 38px;
             margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
         .badge {
             background-color: var(--accent);
             color: #000;
-            padding: 8px 20px;
+            padding: 8px 22px;
             border-radius: 20px;
-            font-weight: bold;
+            font-weight: 800;
             display: inline-block;
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         .container {
             max-width: 1000px;
-            margin: 40px auto 0;
+            margin: 0 auto;
             padding: 0 20px;
         }
 
@@ -79,7 +123,8 @@
             text-align: center;
             font-size: 26px;
             margin-bottom: 30px;
-            color: var(--text-color);
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         /* Галерея з 4 фотографій */
@@ -91,33 +136,35 @@
         }
 
         .photo-card {
-            background: #ffffff;
+            background: var(--card-bg);
             padding: 12px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .photo-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(255, 204, 0, 0.4);
         }
 
         .photo-card img {
             width: 100%;
             height: 220px;
             object-fit: cover;
-            border-radius: 12px;
-            border: 2px solid #e2e8f0;
+            border-radius: 14px;
+            border: 2px solid var(--accent);
         }
 
         .photo-card p {
             margin-top: 10px;
             font-weight: bold;
             color: var(--primary);
+            font-size: 16px;
         }
 
-        /* Картки з побажаннями / тарифами */
+        /* Подарункові "Тарифи" */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -126,81 +173,109 @@
         }
 
         .card {
-            background: #ffffff;
+            background: var(--card-bg);
             padding: 30px 25px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
             text-align: center;
-            border-top: 5px solid var(--primary);
+            border-top: 6px solid var(--primary);
         }
 
         .card h3 {
             color: var(--primary);
             margin-bottom: 12px;
-            font-size: 20px;
+            font-size: 22px;
         }
 
         .price-tag {
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 26px;
+            font-weight: 800;
             margin: 15px 0;
-            color: #1a202c;
+            color: var(--secondary);
         }
 
         .btn {
-            background: var(--primary);
+            background: linear-gradient(135deg, #ff3b30, #ff9500);
             color: white;
             border: none;
-            padding: 12px 28px;
-            border-radius: 10px;
+            padding: 14px 30px;
+            border-radius: 12px;
             font-weight: bold;
             cursor: pointer;
-            text-decoration: none;
             display: inline-block;
             margin-top: 15px;
-            font-size: 16px;
-            transition: background 0.2s;
+            font-size: 17px;
+            box-shadow: 0 4px 15px rgba(255, 59, 48, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .btn:hover {
-            background: #0056b3;
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 149, 0, 0.6);
         }
 
-        /* Блок сюрприз-генератора */
+        /* Скляні блоки для інтерактиву */
         .interactive-section {
-            background: #ffffff;
+            background: var(--card-bg);
             padding: 35px 25px;
             border-radius: 20px;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
             margin-bottom: 40px;
+            border: 2px solid var(--accent);
         }
 
         #wish-text {
-            font-size: 20px;
+            font-size: 22px;
             font-weight: bold;
             color: var(--primary);
             margin-top: 20px;
-            min-height: 30px;
+            min-height: 40px;
+        }
+
+        /* Інтерактивна коробочка з подарунком */
+        .gift-box-container {
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .gift-emoji {
+            font-size: 70px;
+            transition: transform 0.3s ease;
+        }
+
+        .gift-box-container:hover .gift-emoji {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        #gift-message {
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 15px;
+            display: none;
         }
     </style>
 </head>
 <body>
 
+    <!-- Анімований фон -->
+    <div class="confetti-container" id="confetti"></div>
+
     <header>
-        <div class="logo">ІДИ СЮДИ</div>
-        <div style="font-weight: bold; color: #666;">VIP-Клієнт #1</div>
+        <div class="logo">🎉 З ДНЕМ НАРОДЖЕННЯ! 🎉</div>
     </header>
 
     <section class="banner">
-        <div class="badge">ОФІЦІЙНЕ ПОВІДОМЛЕННЯ</div>
-        <h1>З Днем Народження, Іван Романович!</h1>
+        <div class="badge">СВЯТКОВИЙ ВИПУСК</div>
+        <h1>Вітаємо, Іван Романович!</h1>
         <p>Підключено максимальний тариф безлімітного щастя, міцного здоров'я та успіху!</p>
     </section>
 
     <main class="container">
         
-        <!-- Секція з 4 фотографіями -->
+        <!-- Галерея фотографій -->
         <h2 class="section-title">Галерея передумов успіху</h2>
         <div class="photo-gallery">
             <div class="photo-card">
@@ -217,17 +292,17 @@
             </div>
             <div class="photo-card">
                 <img src="4.jpeg" alt="Іван Романович фото 4">
-                <p>Лідер року</p>
+                <p>Лідер Року</p>
             </div>
         </div>
 
-        <!-- Подарункові "Тарифи" -->
+        <!-- Тарифні плани щастя -->
         <h2 class="section-title">Ваш персональний пакет послуг</h2>
         <div class="cards-grid">
             <div class="card">
                 <h3>Тариф "Здоров'я"</h3>
                 <div class="price-tag">безліміт / 365 днів</div>
-                <p>100% захисту від застуд, міцний імунітет та невичерпний запас бадьорості щодня.</p>
+                <p>100% захисту від негараздів, міцний імунітет та невичерпний запас бадьорості щодня.</p>
             </div>
             <div class="card">
                 <h3>Тариф "Успіх & Удача"</h3>
@@ -241,7 +316,7 @@
             </div>
         </div>
 
-        <!-- Інтерактивна кнопка сюрпризу -->
+        <!-- Генератор побажань -->
         <div class="interactive-section">
             <h2>Отримати святковий бонус</h2>
             <p>Натисніть кнопку, щоб згенерувати особисте побажання:</p>
@@ -249,9 +324,35 @@
             <div id="wish-text"></div>
         </div>
 
+        <!-- Інтерактивна секретна коробка -->
+        <div class="interactive-section">
+            <h2>Секретний подарунок</h2>
+            <p>Натисніть на коробку, щоб відкрити її:</p>
+            <div class="gift-box-container" onclick="openGift()">
+                <div class="gift-emoji" id="gift-icon">🎁</div>
+            </div>
+            <div id="gift-message">🎈 Вітаємо! Вам активовано супер-козирь на весь рік: здійснення трьох заповітних мрій! 🚀</div>
+        </div>
+
     </main>
 
     <script>
+        // Генерація падаючих елементів (подарунки, кульки, зірочки)
+        const items = ['🎁', '🎈', '🎉', '⭐', '🎂', '✨'];
+        const confettiContainer = document.getElementById('confetti');
+
+        for (let i = 0; i < 35; i++) {
+            const div = document.createElement('div');
+            div.className = 'falling-item';
+            div.innerText = items[Math.floor(Math.random() * items.length)];
+            div.style.left = Math.random() * 100 + 'vw';
+            div.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            div.style.animationDelay = (Math.random() * 5) + 's';
+            div.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            confettiContainer.appendChild(div);
+        }
+
+        // Генератор побажань
         const wishes = [
             "Бажаємо міцного здоров'я та нових фінансових досягнень!",
             "Нехай кожен день відкриває нові можливості для реалізації планів!",
@@ -263,6 +364,12 @@
         function generateWish() {
             const randomIndex = Math.floor(Math.random() * wishes.length);
             document.getElementById('wish-text').innerText = wishes[randomIndex];
+        }
+
+        // Відкриття секретного подарунка
+        function openGift() {
+            document.getElementById('gift-icon').innerText = '🥳';
+            document.getElementById('gift-message').style.display = 'block';
         }
     </script>
 
