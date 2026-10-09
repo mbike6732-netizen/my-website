@@ -59,7 +59,6 @@
             }
         }
 
-        /* Основний вміст */
         header, .banner, .container {
             position: relative;
             z-index: 2;
@@ -127,17 +126,17 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* Галерея з 4 фотографій */
+        /* Оновлені розміри галереї для повного відображення фото */
         .photo-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             margin-bottom: 50px;
         }
 
         .photo-card {
             background: var(--card-bg);
-            padding: 12px;
+            padding: 15px;
             border-radius: 18px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             text-align: center;
@@ -149,22 +148,23 @@
             box-shadow: 0 12px 25px rgba(255, 204, 0, 0.4);
         }
 
+        /* Фото вирівняно по верхньому краю та змінено розмір для повного відображення обличчя */
         .photo-card img {
             width: 100%;
-            height: 220px;
-            object-fit: cover;
+            height: 380px;
+            object-fit: contain;
+            background-color: #f8fafc;
             border-radius: 14px;
             border: 2px solid var(--accent);
         }
 
         .photo-card p {
-            margin-top: 10px;
+            margin-top: 12px;
             font-weight: bold;
             color: var(--primary);
-            font-size: 16px;
+            font-size: 18px;
         }
 
-        /* Подарункові "Тарифи" */
         .cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -214,7 +214,6 @@
             box-shadow: 0 6px 20px rgba(255, 149, 0, 0.6);
         }
 
-        /* Скляні блоки для інтерактиву */
         .interactive-section {
             background: var(--card-bg);
             padding: 35px 25px;
@@ -233,7 +232,6 @@
             min-height: 40px;
         }
 
-        /* Інтерактивна коробочка з подарунком */
         .gift-box-container {
             cursor: pointer;
             display: inline-block;
@@ -260,7 +258,6 @@
 </head>
 <body>
 
-    <!-- Анімований фон -->
     <div class="confetti-container" id="confetti"></div>
 
     <header>
@@ -275,7 +272,6 @@
 
     <main class="container">
         
-        <!-- Галерея фотографій -->
         <h2 class="section-title">Галерея передумов успіху</h2>
         <div class="photo-gallery">
             <div class="photo-card">
@@ -296,7 +292,6 @@
             </div>
         </div>
 
-        <!-- Тарифні плани щастя -->
         <h2 class="section-title">Ваш персональний пакет послуг</h2>
         <div class="cards-grid">
             <div class="card">
@@ -316,7 +311,6 @@
             </div>
         </div>
 
-        <!-- Генератор побажань -->
         <div class="interactive-section">
             <h2>Отримати святковий бонус</h2>
             <p>Натисніть кнопку, щоб згенерувати особисте побажання:</p>
@@ -324,7 +318,6 @@
             <div id="wish-text"></div>
         </div>
 
-        <!-- Інтерактивна секретна коробка -->
         <div class="interactive-section">
             <h2>Секретний подарунок</h2>
             <p>Натисніть на коробку, щоб відкрити її:</p>
@@ -337,7 +330,6 @@
     </main>
 
     <script>
-        // Генерація падаючих елементів (подарунки, кульки, зірочки)
         const items = ['🎁', '🎈', '🎉', '⭐', '🎂', '✨'];
         const confettiContainer = document.getElementById('confetti');
 
@@ -352,7 +344,6 @@
             confettiContainer.appendChild(div);
         }
 
-        // Генератор побажань
         const wishes = [
             "Бажаємо міцного здоров'я та нових фінансових досягнень!",
             "Нехай кожен день відкриває нові можливості для реалізації планів!",
@@ -366,7 +357,6 @@
             document.getElementById('wish-text').innerText = wishes[randomIndex];
         }
 
-        // Відкриття секретного подарунка
         function openGift() {
             document.getElementById('gift-icon').innerText = '🥳';
             document.getElementById('gift-message').style.display = 'block';
