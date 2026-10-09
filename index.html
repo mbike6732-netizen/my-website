@@ -1,32 +1,278 @@
-
 <!DOCTYPE html>
 <html lang="uk">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Мій перший сайт</title>
+  <title>З Днем Народження!</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 60px 20px;
-      background: #f0f4ff;
-      color: #1e293b;
+    :root {
+      --primary-color: #ff477e;
+      --secondary-color: #ff1053;
+      --accent-color: #ffb5a7;
+      --gold: #ffd700;
+      --bg-gradient: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      --card-bg: rgba(255, 255, 255, 0.92);
     }
-    h1 { color: #2563eb; }
-    a {
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      background: var(--bg-gradient);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Анімація падаючого конфетті */
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: var(--gold);
+      opacity: 0.8;
+      top: -10px;
+      animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* Картка привітання */
+    .card {
+      position: relative;
+      z-index: 10;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      max-width: 500px;
+      width: 100%;
+      border-radius: 24px;
+      padding: 40px 30px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
+                  0 0 20px rgba(255, 215, 0, 0.3);
+      border: 2px solid rgba(255, 215, 0, 0.5);
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards 0.3s;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .badge {
       display: inline-block;
-      padding: 12px 24px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
+      background: linear-gradient(45deg, var(--gold), #ffaa00);
+      color: #000;
+      font-weight: bold;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(255, 215, 0, 0.4);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: #1a1a1a;
+      margin-bottom: 25px;
+      line-height: 1.2;
+      background: linear-gradient(45deg, var(--secondary-color), #8a2be2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Обгортка фото з ефектами */
+    .photo-wrapper {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 25px;
+      border-radius: 50%;
+      padding: 6px;
+      background: linear-gradient(45deg, var(--gold), var(--primary-color), #00d2ff);
+      box-shadow: 0 10px 25px rgba(255, 71, 126, 0.4);
+    }
+
+    .photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid #fff;
+      display: block;
+    }
+
+    /* Текст привітання */
+    .wishes {
+      font-size: 1.05rem;
+      color: #4a4a4a;
+      line-height: 1.7;
+      margin-bottom: 30px;
+    }
+
+    .wishes p {
+      margin-bottom: 12px;
+    }
+
+    .highlight {
+      color: var(--secondary-color);
+      font-weight: 600;
+    }
+
+    /* Кнопка */
+    .btn {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: #fff;
+      border: none;
+      padding: 14px 32px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 16, 83, 0.4);
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 12px 25px rgba(255, 16, 83, 0.6);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+    }
+
+    /* Додатковий блок з секретним привітанням */
+    .secret-message {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.6s ease, opacity 0.6s ease;
+      opacity: 0;
+      margin-top: 20px;
+      font-style: italic;
+      color: #666;
+      background: #f8f9fa;
+      border-radius: 12px;
+      padding: 0 15px;
+    }
+
+    .secret-message.show {
+      max-height: 150px;
+      opacity: 1;
+      padding: 15px;
+    }
+
+    /* Адаптивність */
+    @media (max-width: 480px) {
+      .card {
+        padding: 30px 20px;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .photo-wrapper {
+        width: 160px;
+        height: 160px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Привіт! 👋</h1>
-  <p>Це мій перший сайт на GitHub.</p>
-  <a href="https://github.com/">Мій GitHub</a>
+
+  <!-- Контейнер для анімації конфетті -->
+  <div class="confetti-container" id="confetti"></div>
+
+  <!-- Головна картка -->
+  <main class="card">
+    <span class="badge">🎉 Особливий день 🎉</span>
+    
+    <h1>З Днем Народження!</h1>
+
+    <!-- Фотографія -->
+    <div class="photo-wrapper">
+      <img src="1.jpeg" alt="Іменинник" onerror="this.src='https://via.placeholder.com/200?text=Покладіть+1.jpeg';">
+    </div>
+
+    <!-- Текст -->
+    <div class="wishes">
+      <p>Бажаю незабутніх вражень, щирих посмішок та здійснення найамбітніших мрій!</p>
+      <p>Нехай кожен день дарує <span class="highlight">натхнення</span>, поруч завжди будуть вірні друзі, а в душі панує гармонія та тепло.</p>
+    </div>
+
+    <!-- Інтерактивна кнопка -->
+    <button class="btn" onclick="toggleMessage()">Натисни для сюрпризу ✨</button>
+
+    <!-- Приховане повідомлення -->
+    <div class="secret-message" id="secret">
+      <p>🎈 Нехай цей рік стане роком нових перемог, гарного настрою та міцного здоров'я! Будь щасливим(ою)! 🥂</p>
+    </div>
+  </main>
+
+  <script>
+    // Створення конфетті
+    function createConfetti() {
+      const container = document.getElementById('confetti');
+      const colors = ['#ffd700', '#ff477e', '#00d2ff', '#ff1053', '#00ff88', '#ffffff'];
+      const count = 40;
+
+      for (let i = 0; i < count; i++) {
+        const piece = document.createElement('div');
+        piece.classList.add('confetti');
+        
+        piece.style.left = Math.random() * 100 + 'vw';
+        piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        piece.style.animationDelay = (Math.random() * 3) + 's';
+        piece.style.width = (Math.random() * 8 + 6) + 'px';
+        piece.style.height = piece.style.width;
+
+        container.appendChild(piece);
+      }
+    }
+
+    // Перемикач секретного повідомлення
+    function toggleMessage() {
+      const secret = document.getElementById('secret');
+      secret.classList.toggle('show');
+    }
+
+    // Запуск анімацій
+    window.onload = createConfetti;
+  </script>
 </body>
 </html>
